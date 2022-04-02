@@ -236,6 +236,96 @@ defmodule Meilisearch.Settings do
   end
 
   @doc """
+  Filterable attributes.
+
+  ## Example
+
+      iex> Meilisearch.Settings.get_filterable_attributes("meilisearch_test")
+      {:ok, []}
+  """
+  @spec get_filterable_attributes(String.t()) :: HTTP.response()
+  def get_filterable_attributes(index_uid) do
+    HTTP.get_request("indexes/#{index_uid}/settings/filterable-attributes")
+  end
+
+  @doc """
+  Update filterable attributes.
+
+  ## Example
+
+      iex> Meilisearch.Settings.update_filterable-attributes(
+        "meilisearch_test",
+        ["title"]
+      )
+      {:ok, %{"updateId" => 1}}
+  """
+  @spec update_filterable_attributes(String.t(), list(String.t())) :: HTTP.response()
+  def update_filterable_attributes(index_uid, filterable_attributes) do
+    HTTP.post_request(
+      "indexes/#{index_uid}/settings/filterable-attributes",
+      filterable_attributes
+    )
+  end
+
+  @doc """
+  Reset filterable attributes.
+
+  ## Example
+
+      iex> Meilisearch.Settings.reset_filterable_attributes("meilisearch_test")
+      {:ok, %{"updateId" => 1}}
+  """
+  @spec reset_filterable_attributes(String.t()) :: HTTP.response()
+  def reset_filterable_attributes(index_uid) do
+    HTTP.delete_request("indexes/#{index_uid}/settings/filterable-attributes")
+  end
+
+  @doc """
+  Sortable attributes.
+
+  ## Example
+
+      iex> Meilisearch.Settings.get_sortable_attributes("meilisearch_test")
+      {:ok, []}
+  """
+  @spec get_sortable_attributes(String.t()) :: HTTP.response()
+  def get_sortable_attributes(index_uid) do
+    HTTP.get_request("indexes/#{index_uid}/settings/sortable-attributes")
+  end
+
+  @doc """
+  Update sortable attributes.
+
+  ## Example
+
+      iex> Meilisearch.Settings.update_sortable-attributes(
+        "meilisearch_test",
+        ["title"]
+      )
+      {:ok, %{"updateId" => 1}}
+  """
+  @spec update_sortable_attributes(String.t(), list(String.t())) :: HTTP.response()
+  def update_sortable_attributes(index_uid, sortable_attributes) do
+    HTTP.post_request(
+      "indexes/#{index_uid}/settings/sortable-attributes",
+      sortable_attributes
+    )
+  end
+
+  @doc """
+  Reset sortable attributes.
+
+  ## Example
+
+      iex> Meilisearch.Settings.reset_sortable_attributes("meilisearch_test")
+      {:ok, %{"updateId" => 1}}
+  """
+  @spec reset_sortable_attributes(String.t()) :: HTTP.response()
+  def reset_sortable_attributes(index_uid) do
+    HTTP.delete_request("indexes/#{index_uid}/settings/sortable-attributes")
+  end
+
+  @doc """
   Get distinct attribute.
 
   ## Example
