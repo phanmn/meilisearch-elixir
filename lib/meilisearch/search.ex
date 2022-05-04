@@ -48,14 +48,14 @@ defmodule Meilisearch.Search do
         "query" => "nothing will match"
       }}
   """
-  @spec search(String.t(), String.t() | nil, Keyword.t()) :: HTTP.response()
-  def search(uid, search_query, opts \\ []) do
-    params =
+  @spec search(String.t(), String.t() | nil, Map.t()) :: HTTP.response()
+  def search(uid, search_query, opts \\ %{}) do
+    body =
       case search_query do
         nil -> opts
-        q -> [{:q, q} | opts]
+        q -> %{q: q} |> Map.merge(opts)
       end
 
-    HTTP.get_request("indexes/#{uid}/search", [], params: params)
+    HTTP.post_request("indexes/#{uid}/search", body)
   end
 end
