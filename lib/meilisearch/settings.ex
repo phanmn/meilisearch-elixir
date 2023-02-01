@@ -262,8 +262,10 @@ defmodule Meilisearch.Settings do
   @spec update_filterable_attributes(String.t(), list(String.t())) :: HTTP.response()
   def update_filterable_attributes(index_uid, filterable_attributes) do
     HTTP.post_request(
-      "indexes/#{index_uid}/settings/filterable-attributes",
-      filterable_attributes
+      "indexes/#{index_uid}/settings",
+      %{
+        "filterableAttributes" => filterable_attributes
+      }
     )
   end
 
@@ -307,8 +309,10 @@ defmodule Meilisearch.Settings do
   @spec update_sortable_attributes(String.t(), list(String.t())) :: HTTP.response()
   def update_sortable_attributes(index_uid, sortable_attributes) do
     HTTP.post_request(
-      "indexes/#{index_uid}/settings/sortable-attributes",
-      sortable_attributes
+      "indexes/#{index_uid}/settings",
+      %{
+        "sortableAttributes" => sortable_attributes
+      }
     )
   end
 
