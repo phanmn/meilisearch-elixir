@@ -7,6 +7,7 @@ defmodule Support.Helpers do
     {:ok, indexes} = Indexes.list()
 
     indexes
+    |> Map.get("results")
     |> Enum.map(fn %{"uid" => uid} -> uid end)
     |> Enum.map(&Indexes.delete/1)
   end

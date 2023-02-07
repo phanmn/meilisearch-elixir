@@ -3,6 +3,7 @@ defmodule Meilisearch.HTTP do
   HTTPoison client wrapper
   """
   use HTTPoison.Base
+  require Logger
 
   @type path :: String.t()
 
@@ -31,6 +32,13 @@ defmodule Meilisearch.HTTP do
   def post_request(url, body, headers \\ [], options \\ []) do
     url
     |> post(body, headers, options)
+    |> handle_response()
+  end
+
+  @spec patch_request(String.t(), any, any, Keyword.t()) :: response()
+  def patch_request(url, body, headers \\ [], options \\ []) do
+    url
+    |> patch(body, headers, options)
     |> handle_response()
   end
 

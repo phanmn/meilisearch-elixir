@@ -13,15 +13,13 @@ defmodule Meilisearch.Indexes do
   ## Example
 
       iex> Meilisearch.Indexes.list()
-      {:ok, [
-        %{
-          "createdAt" => "2020-05-23T06:20:18.394281328Z",
-          "name" => "meilisearch_test",
-          "primaryKey" => nil,
-          "uid" => "meilisearch_test",
-          "updatedAt" => "2020-05-23T06:20:18.394292399Z"
+      {:ok, %{
+        "limit" => 20,
+        "offset" => 0,
+        "results" => [],
+        "total" => 0
         }
-      ]}
+      }
 
   """
   @spec list :: HTTP.response()
