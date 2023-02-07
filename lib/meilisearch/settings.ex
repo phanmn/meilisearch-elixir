@@ -395,8 +395,10 @@ defmodule Meilisearch.Settings do
   @spec update_searchable_attributes(String.t(), list(String.t())) :: HTTP.response()
   def update_searchable_attributes(index_uid, searchable_attributes) do
     HTTP.post_request(
-      "indexes/#{index_uid}/settings/searchable-attributes",
-      searchable_attributes
+      "indexes/#{index_uid}/settings",
+      %{
+        "searchableAttributes" => searchable_attributes
+      }
     )
   end
 
